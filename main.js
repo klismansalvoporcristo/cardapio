@@ -20,7 +20,7 @@ const recheios = [
   "Abacaxi (+fruta)"
 ];
 
-const recheiosComAdicional = ["Morango", "Abacaxi"];
+const recheiosComAdicional = ["Morango (+fruta)", "Abacaxi (+fruta)"];
 
 const container = document.getElementById("cardapio");
 const numeroWhatsApp = "5589999844394"; // Altere para seu número real com DDI
