@@ -16,8 +16,8 @@ const recheios = [
   "Chocolate branco",
   "Ameixa",
   "Crocante",
-  "Morango",
-  "Abacaxi"
+  "Morango (+fruta)",
+  "Abacaxi (+fruta)"
 ];
 
 const recheiosComAdicional = ["Morango", "Abacaxi"];
