@@ -76,10 +76,10 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
       if (recheiosComAdicional.includes(recheio)) {
         precoFinal += 10;
-        mensagem += " Observação: Estou ciente do adicional de R$10,00 para recheios com frutas.";
+        mensagem += " Observação: Estou ciente do adicional de para recheios com frutas.";
       }
 
-      mensagem += ` Valor total: R$ ${precoFinal.toFixed(2)}`;
+      mensagem;
       const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
       window.open(url, "_blank");
       document.body.removeChild(modal);
