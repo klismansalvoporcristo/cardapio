@@ -76,7 +76,7 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
       if (recheiosComAdicional.includes(recheio)) {
         precoFinal += 10;
-        mensagem += " Observação: Estou ciente do adicional de para recheios com frutas.";
+        mensagem += " Observação: Estou ciente do adicional para recheios com frutas.";
       }
 
       mensagem;
