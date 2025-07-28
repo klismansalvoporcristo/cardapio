@@ -16,11 +16,11 @@ const recheios = [
   "Chocolate branco",
   "Ameixa",
   "Crocante",
-  "Morango (+fruta)",
-  "Abacaxi (+fruta)"
+  "Morango",
+  "Abacaxi"
 ];
 
-const recheiosComAdicional = ["Morango (+fruta)", "Abacaxi (+fruta)"];
+const recheiosComAdicional = ["Morango", "Abacaxi"];
 
 const container = document.getElementById("cardapio");
 const numeroWhatsApp = "5589999844394"; // Altere para seu número real com DDI
@@ -63,7 +63,7 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
     if (recheiosComAdicional.includes(recheio)) {
       const aviso = document.createElement("span");
-      aviso.innerText = " +R$10";
+      aviso.innerText = " + Adicional de fruta";
       aviso.style.color = "red";
       aviso.style.fontSize = "12px";
       aviso.style.marginLeft = "8px";
