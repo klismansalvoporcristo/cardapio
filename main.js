@@ -66,7 +66,7 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
     if (recheiosComAdicional.includes(recheio)) {
       const aviso = document.createElement("span");
-      aviso.innerText = " + Adicional de fruta";
+      aviso.innerText = " + Adicional de fruta R$ 15,00";
       aviso.style.color = "red";
       aviso.style.fontSize = "12px";
       aviso.style.marginLeft = "8px";
@@ -99,3 +99,4 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
   document.body.appendChild(modal);
 }
+
