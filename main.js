@@ -1,26 +1,29 @@
 const precosBolos = [
+  { fatias: 6, preco: 70.00 },
   { fatias: 10, preco: 100.00 },
-  { fatias: 15, preco: 125.00 },
-  { fatias: 27, preco: 155.00 },
-  { fatias: 40, preco: 200.00 },
-  { fatias: 60, preco: 260.00 },
-  { fatias: 80, preco: 320.00 },
-  { fatias: 100, preco: 380.00 }
+  { fatias: 15, preco: 130.00 },
+  { fatias: 27, preco: 180.00 },
+  { fatias: 40, preco: 230.00 },
+  { fatias: 60, preco: 290.00 },
+  { fatias: 80, preco: 350.00 },
+  { fatias: 100, preco: 4500.00 }
 ];
 
 const recheios = [
   "Doce de leite",
   "Ninho",
   "Beijinho",
+  "Brigadeiro",
   "Brigadeiro 4 leite",
   "Chocolate branco",
   "Ameixa",
   "Crocante",
   "Morango",
+  "Maracujá",
   "Abacaxi"
 ];
 
-const recheiosComAdicional = ["Morango", "Abacaxi"];
+const recheiosComAdicional = ["Morango", "Maracujá", "Abacaxi"];
 
 const container = document.getElementById("cardapio");
 const numeroWhatsApp = "5589999844394"; // Altere para seu número real com DDI
@@ -75,7 +78,7 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
       let mensagem = `Olá! Gostaria de encomendar um bolo com ${fatias} fatias e recheio de ${recheio}.`;
 
       if (recheiosComAdicional.includes(recheio)) {
-        precoFinal += 10;
+        precoFinal += 15;
         mensagem += " Observação: Estou ciente do adicional para recheios com frutas.";
       }
 
