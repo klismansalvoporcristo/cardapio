@@ -62,31 +62,60 @@ padding: 0 20px;
   line-height: 1.5;
 }
 
+.dica{
+text-align:center;
+font-weight:bold;
+margin-top:10px;
+}
+
+.info-card{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:30px;
+box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+.info-card h2{
+margin-bottom:10px;
+font-size:20px;
+}
+
+.info-item{
+margin-top:10px;
+font-size:15px;
+}
+
+.extra{
+color:#e63946;
+font-weight:bold;
+}
+
 .card {
 background-color: var(--card-color);
-border-radius: 10px;
-padding: 16px 24px;
-margin-bottom: 20px;
-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-transition: background 0.3s ease;
-text-decoration: none;
-color: inherit;
-display: block;
+border-radius: 12px;
+padding: 18px 22px;
+margin-bottom: 18px;
+box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition: all 0.2s ease;
 }
 
 .card:hover {
 background-color: #F48AA8;
 color: white;
+transform: scale(1.02);
 }
 
-.card-title {
-font-size: 20px;
-font-weight: bold;
+.card:active{
+transform:scale(0.97);
 }
 
 .price {
 font-size: 18px;
-margin-top: 8px;
+font-weight:bold;
 }
 
 footer {

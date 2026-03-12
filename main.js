@@ -26,7 +26,7 @@ const recheios = [
 const recheiosComAdicional = ["Morango", "Maracujá", "Abacaxi"];
 
 const container = document.getElementById("cardapio");
-const numeroWhatsApp = "5589999844394"; // Altere para seu número real com DDI
+const numeroWhatsApp = "5589999844394"; 
 
 // Cria os cards de tamanhos
 precosBolos.forEach(item => {
@@ -36,7 +36,7 @@ precosBolos.forEach(item => {
 
   const title = document.createElement("div");
   title.classList.add("card-title");
-  title.textContent = `${item.fatias} fatias`;
+  title.textContent = `🎂 ${item.fatias} fatias`;
 
   const price = document.createElement("div");
   price.classList.add("price");
@@ -60,6 +60,13 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
   titulo.innerText = `Escolha o recheio para o bolo de ${fatias} fatias:`;
   modal.appendChild(titulo);
 
+  const avisoMassa = document.createElement("p");
+    avisoMassa.innerText = "Massas disponíveis: amanteigada ou chocolate (+R$15)";
+    avisoMassa.style.fontSize = "13px";
+    avisoMassa.style.marginBottom = "10px";
+
+    modal.appendChild(avisoMassa);
+
   recheios.forEach(recheio => {
     const botao = document.createElement("button");
     botao.innerText = recheio;
@@ -75,7 +82,7 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
     botao.onclick = () => {
       let precoFinal = precoBase;
-      let mensagem = `Olá! Gostaria de encomendar um bolo com ${fatias} fatias e recheio de ${recheio}.`;
+      let mensagem = `Olá! Gostaria de encomendar um bolo de ${fatias} fatias com recheio de ${recheio}. Valor aproximado: R$ ${precoFinal.toFixed(2)}.`;
 
       if (recheiosComAdicional.includes(recheio)) {
         precoFinal += 15;
@@ -99,4 +106,3 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
   document.body.appendChild(modal);
 }
-
