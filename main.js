@@ -6,7 +6,7 @@ const precosBolos = [
   { fatias: 40, preco: 230.00 },
   { fatias: 60, preco: 290.00 },
   { fatias: 80, preco: 350.00 },
-  { fatias: 100, preco: 4500.00 }
+  { fatias: 100, preco: 450.00 }
 ];
 
 const recheios = [
@@ -106,3 +106,4 @@ function mostrarOpcoesRecheio(fatias, precoBase) {
 
   document.body.appendChild(modal);
 }
+
