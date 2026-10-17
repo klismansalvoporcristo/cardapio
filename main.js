@@ -52,58 +52,143 @@ precosBolos.forEach(item => {
 });
 
 // Função para mostrar o submenu com recheios
+
 function mostrarOpcoesRecheio(fatias, precoBase) {
   const modal = document.createElement("div");
   modal.classList.add("modal-recheio");
 
   const titulo = document.createElement("p");
-  titulo.innerText = `Escolha o recheio para o bolo de ${fatias} fatias:`;
+  titulo.innerText =
+    `Escolha até 3 sabores para o bolo de ${fatias} fatias:`;
   modal.appendChild(titulo);
 
-  const avisoMassa = document.createElement("p");
-    avisoMassa.innerText = "Massas disponíveis: amanteigada ou chocolate (+R$15)";
-    avisoMassa.style.fontSize = "13px";
-    avisoMassa.style.marginBottom = "10px";
+  const aviso = document.createElement("p");
+  aviso.innerText = "Selecione de 1 a 3 sabores.";
+  aviso.style.fontSize = "13px";
+  modal.appendChild(aviso);
 
-    modal.appendChild(avisoMassa);
+  // Seleção da massa
+  const tituloMassa = document.createElement("p");
+  tituloMassa.innerText = "Escolha a massa:";
+  modal.appendChild(tituloMassa);
 
-  recheios.forEach(recheio => {
-    const botao = document.createElement("button");
-    botao.innerText = recheio;
+  const massaSelect = document.createElement("select");
+  massaSelect.style.display = "block";
+  massaSelect.style.marginBottom = "15px";
+  massaSelect.style.padding = "8px";
+  massaSelect.style.width = "100%";
 
-    if (recheiosComAdicional.includes(recheio)) {
-      const aviso = document.createElement("span");
-      aviso.innerText = " + Adicional de fruta R$ 15,00";
-      aviso.style.color = "red";
-      aviso.style.fontSize = "12px";
-      aviso.style.marginLeft = "8px";
-      botao.appendChild(aviso);
-    }
+  const massas = [
+    { nome: "Amanteigada", adicional: 0 },
+    { nome: "Chocolate (+R$ 15,00)", adicional: 15 }
+  ];
 
-    botao.onclick = () => {
-      let precoFinal = precoBase;
-      let mensagem = `Olá! Gostaria de encomendar um bolo de ${fatias} fatias com recheio de ${recheio}. Valor aproximado: R$ ${precoFinal.toFixed(2)}.`;
-
-      if (recheiosComAdicional.includes(recheio)) {
-        precoFinal += 15;
-        mensagem += " Observação: Estou ciente do adicional para recheios com frutas.";
-      }
-
-      mensagem;
-      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, "_blank");
-      document.body.removeChild(modal);
-    };
-
-    modal.appendChild(botao);
+  massas.forEach(massa => {
+    const opcao = document.createElement("option");
+    opcao.value = massa.nome;
+    opcao.textContent = massa.nome;
+    massaSelect.appendChild(opcao);
   });
 
+  modal.appendChild(massaSelect);
+
+  // Lista de recheios
+  const listaRecheios = document.createElement("div");
+  listaRecheios.style.display = "flex";
+  listaRecheios.style.flexDirection = "column";
+  listaRecheios.style.gap = "8px";
+
+  recheios.forEach(recheio => {
+    const label = document.createElement("label");
+    label.style.display = "flex";
+    label.style.alignItems = "center";
+    label.style.gap = "8px";
+    label.style.cursor = "pointer";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = recheio;
+
+    const texto = document.createElement("span");
+    texto.textContent = recheiosComAdicional.includes(recheio)
+      ? `${recheio} (+R$ 15,00)`
+      : recheio;
+
+    label.appendChild(checkbox);
+    label.appendChild(texto);
+    listaRecheios.appendChild(label);
+
+    checkbox.addEventListener("change", () => {
+      const selecionados = listaRecheios.querySelectorAll(
+        'input[type="checkbox"]:checked'
+      );
+
+      if (selecionados.length > 3) {
+        checkbox.checked = false;
+        alert("Você pode escolher no máximo 3 sabores.");
+      }
+    });
+  });
+
+  modal.appendChild(listaRecheios);
+
+  // Botão para confirmar o pedido
+  const confirmar = document.createElement("button");
+  confirmar.innerText = "Encomendar pelo WhatsApp";
+  confirmar.style.marginTop = "15px";
+
+  confirmar.onclick = () => {
+    const selecionados = [
+      ...listaRecheios.querySelectorAll(
+        'input[type="checkbox"]:checked'
+      )
+    ].map(checkbox => checkbox.value);
+
+    if (selecionados.length === 0) {
+      alert("Escolha pelo menos 1 sabor.");
+      return;
+    }
+
+    if (selecionados.length > 3) {
+      alert("Escolha no máximo 3 sabores.");
+      return;
+    }
+
+    const massaEscolhida = massas.find(
+      massa => massa.nome === massaSelect.value
+    );
+
+    const adicionalFrutas = selecionados.some(
+      sabor => recheiosComAdicional.includes(sabor)
+    ) ? 15 : 0;
+
+    const precoFinal =
+      precoBase + massaEscolhida.adicional + adicionalFrutas;
+
+    const mensagem =
+      `Olá! Gostaria de encomendar um bolo.\n\n` +
+      `Tamanho: ${fatias} fatias\n` +
+      `Massa: ${massaEscolhida.nome}\n` +
+      `Recheio(s): ${selecionados.join(", ")}\n` +
+      `Valor aproximado: R$ ${precoFinal.toFixed(2).replace(".", ",")}\n\n` +
+      `Gostaria de confirmar os detalhes do pedido.`;
+
+    const url =
+      `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, "_blank");
+    document.body.removeChild(modal);
+  };
+
+  modal.appendChild(confirmar);
+
+  // Botão cancelar
   const cancelar = document.createElement("button");
   cancelar.innerText = "Cancelar";
   cancelar.style.marginTop = "10px";
-  cancelar.onclick = () => document.body.removeChild(modal);
-  modal.appendChild(cancelar);
+  cancelar.onclick = () => modal.remove();
 
+  modal.appendChild(cancelar);
   document.body.appendChild(modal);
 }
 
