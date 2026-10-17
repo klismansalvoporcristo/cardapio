@@ -1,12 +1,12 @@
 const precosBolos = [
-  { fatias: 6, preco: 70.00 },
-  { fatias: 10, preco: 100.00 },
-  { fatias: 15, preco: 130.00 },
-  { fatias: 27, preco: 180.00 },
-  { fatias: 40, preco: 230.00 },
-  { fatias: 60, preco: 290.00 },
-  { fatias: 80, preco: 350.00 },
-  { fatias: 100, preco: 450.00 }
+  { fatias: 6, preco: 80.00 },
+  { fatias: 10, preco: 115.00 },
+  { fatias: 15, preco: 150.00 },
+  { fatias: 27, preco: 210.00 },
+  { fatias: 40, preco: 265.00 },
+  { fatias: 60, preco: 335.00 },
+  { fatias: 80, preco: 405.00 },
+  { fatias: 100, preco: 510.00 }
 ];
 
 const recheios = [
